@@ -2,7 +2,12 @@ infrastructure/testnet/tls*
 infrastructure/testnet/network/*/
 infrastructure/testnet/logs/*
 infrastructure/testnet/nohup.out
-infrastructure/testnet/alastria-node
+
+infrastructure/testnet/alastria-node/.github/
+infrastructure/testnet/alastria-node/arquitectura/
+infrastructure/testnet/alastria-node/.gitignore
+infrastructure/testnet/alastria-node/Dockerfile
+
 infrastructure/testnet/eth-netstats
 infrastructure/testnet/geth_faulty
 
