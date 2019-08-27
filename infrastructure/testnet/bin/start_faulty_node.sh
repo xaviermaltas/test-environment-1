@@ -19,7 +19,8 @@ _TIME=$(date +%Y%m%d%H%M%S)
 
 FAULTY_MODE="1"
 NODE_NAME="$1"
-NETID=9535753591
+#NETID=9535753591
+NETID=83584648538
 mapfile -t IDENTITY <"${PWD}"/network/"$NODE_NAME"/IDENTITY
 mapfile -t NODE_TYPE <"${PWD}"/network/"$NODE_NAME"/NODE_TYPE
 NODE_IP="127.0.0.1"
@@ -104,9 +105,12 @@ elif [[ "$NODE_NAME" == "validator2" ]]; then
 else
 	PUERTO=7
 fi
+# echo "${NODE_NAME} (start_node.sh) geth --datadir "${PWD}"/identities/"$NODE_NAME" init "${PWD}"/data/alastria-node/data/genesis.json"
+# geth --datadir "${PWD}"/identities/"$NODE_NAME" init "${PWD}"/data/alastria-node/data/genesis.json
 
 OTHER_NODES="`cat ${PWD}/identities/CONSTELLATION_NODES`"
-GLOBAL_ARGS="--networkid $NETID --identity $IDENTITY --rpc --rpcaddr 0.0.0.0 --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul --rpcport 2200$PUERTO --port 2100$PUERTO --targetgaslimit 18446744073709551615 --ethstats $IDENTITY:bb98a0b6442386d0cdf8a31b267892c1@$ETH_STATS_IP:3000 "
+GLOBAL_ARGS="--networkid $NETID --identity $IDENTITY --rpc --rpcaddr 0.0.0.0 --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul --rpcport 2200$PUERTO --port 2100$PUERTO --targetgaslimit 1000 --ethstats $IDENTITY:bb98a0b6442386d0cdf8a31b267892c1@$ETH_STATS_IP:3000 "
+
 FAULTY_ARGS="--istanbul.faultymode $2 "
 CONSTELLATION_PORT="900$PUERTO"
 if [ "$NODE_NAME" == "main"  -o "$NODE_NAME" == "validator1" -o "$NODE_NAME" == "validator2" ]; then

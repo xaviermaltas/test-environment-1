@@ -88,13 +88,16 @@ GLOBAL_ARGS="--networkid $NETID --identity $IDENTITY --rpc --rpcaddr 0.0.0.0 --r
 CONSTELLATION_PORT="900$PUERTO"
 
 if [[ "$CARPETA" == "validator" ]]; then
+	echo "[*] Executing validator"
 	nohup geth --datadir "${PWD}"/"$CARPETA" $GLOBAL_ARGS --mine --minerthreads 1 --syncmode "full" 2>> "${PWD}"/logs/quorum_"$CARPETA"_"${_TIME}".log &
+	# geth --exec 'istanbul.propose("0xB50001FfA410F4D03663D69540c1C8e1C017e7e6", true)' attach ${CARPETA}/geth.ipc
 else
 	if [[ "$PUERTO" == "1" ]]; then
 		OTHER_NODES="http://127.0.0.1:9002/"
 	else 
 		OTHER_NODES="http://127.0.0.1:9001/"
 	fi
+	echo "[*] Executing general{$PUERTO}"
 	generate_conf "${NODE_IP}" "${CONSTELLATION_PORT}" "$OTHER_NODES" "${PWD}" "${CARPETA}" > "${PWD}"/"$CARPETA"/constellation/constellation.conf
 	nohup constellation-node "${PWD}"/"$CARPETA"/constellation/constellation.conf 2>> "${PWD}"/logs/constellation_"$CARPETA"_"${_TIME}".log &
 	check_port "900$PUERTO"

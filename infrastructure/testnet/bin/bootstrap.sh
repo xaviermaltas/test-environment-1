@@ -2,7 +2,9 @@
 echo "[*] Installing required dependencies"
 PWD="${pwd}"
 
-sudo apt-get install wget git sudo netcat npm nodejs
+sudo apt-get install wget netcat
+sudo apt-get install wget git 
+sudo netcat npm nodejs
 # When using docker images
 # sudo apt-get install wget git sudo netcat
 
@@ -12,7 +14,7 @@ git checkout develop
 
 cd ..
 sudo -H $PWD/alastria-node/scripts/bootstrap.sh
-rm -rf alastria-node
+#rm -rf alastria-node
 
 echo "[*] Building fauty-node compatible geth client"
 ./bin/build_faulty_nodes.sh

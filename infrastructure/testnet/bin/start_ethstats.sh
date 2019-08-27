@@ -2,6 +2,7 @@
 set -u
 set -e
 
+echo "[*] Executing ETHERSTATS"
 EPWD="$(pwd)"
 
 _TIME=$(date +%Y%m%d%H%M%S)

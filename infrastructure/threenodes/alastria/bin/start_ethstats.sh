@@ -3,6 +3,7 @@ set -u
 set -e
 
 echo "Excecute from alastria folder"
+echo "[*] Executing ETHERSTATS"
 
 EPWD="$(pwd)"
 
