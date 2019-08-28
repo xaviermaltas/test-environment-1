@@ -2,7 +2,6 @@ infrastructure/testnet/tls*
 infrastructure/testnet/network/*/
 infrastructure/testnet/logs/*
 infrastructure/testnet/nohup.out
-infrastructure/testnet/eth-netstats
 infrastructure/testnet/geth_faulty
 
 .vagrant/
