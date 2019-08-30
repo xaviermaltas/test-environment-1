@@ -98,7 +98,8 @@ else
 		OTHER_NODES="http://127.0.0.1:9001/"
 	fi
 	echo "[*] Executing general{$PUERTO}"
-	generate_conf "${NODE_IP}" "${CONSTELLATION_PORT}" "$OTHER_NODES" "${PWD}" "${CARPETA}" > "${PWD}"/"$CARPETA"/constellation/constellation.conf
+	generate_conf "${NODE_IP}" "${CONSTELLATION_PORT}" "$OTHER_NODES" "${PWD}" "${CARPETA}" 
+	# > "${PWD}"/"$CARPETA"constellation/constellation.conf
 	nohup constellation-node "${PWD}"/"$CARPETA"/constellation/constellation.conf 2>> "${PWD}"/logs/constellation_"$CARPETA"_"${_TIME}".log &
 	check_port $CONSTELLATION_PORT
 	nohup env PRIVATE_CONFIG="${PWD}"/"$CARPETA"/constellation/constellation.conf geth --datadir "${PWD}"/"$CARPETA" --debug $GLOBAL_ARGS 2>> "${PWD}"/logs/quorum_"$CARPETA"_"${_TIME}".log &
