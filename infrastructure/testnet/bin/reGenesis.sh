@@ -6,7 +6,7 @@ PWD="$(pwd)"
 
 for (( c=1; c<5; c++ ))
 do
-    echo "$PWD"
+    # echo "$PWD"
     cd identities/general$c/geth
     echo "Deleting general$c chaindata"
     rm -rf chaindata
@@ -15,6 +15,26 @@ do
     cd ..
     cd ..
 done
+
+for (( c=1; c<3; c++ ))
+do
+    # echo "$PWD"
+    cd identities/validator$c/geth
+    echo "Deleting validator$c chaindata"
+    rm -rf chaindata
+    rm -rf lightchaindata
+    cd ..
+    cd ..
+    cd ..
+done
+
+cd identities/main/geth
+echo "Deleting main chaindata"
+rm -rf chaindata
+rm -rf lightchaindata
+cd ..
+cd ..
+cd ..
 
 echo " "
 echo " "
