@@ -111,11 +111,12 @@ fi
 # geth --datadir "${PWD}"/network/"$NODE_NAME" init "${PWD}"/data/alastria-node/data/genesis.json
 
 OTHER_NODES="`cat ${PWD}/identities/CONSTELLATION_NODES`"
-GLOBAL_ARGS="--networkid $NETID --identity $IDENTITY --rpc --rpcaddr 0.0.0.0 --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul --rpcport 2200$PUERTO --port 2100$PUERTO --targetgaslimit 1000 --ethstats $IDENTITY:bb98a0b6442386d0cdf8a31b267892c1@$ETH_STATS_IP:3000 "
+GLOBAL_ARGS="--networkid $NETID --identity $IDENTITY --rpc --rpcaddr 0.0.0.0 --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul --rpcport 2200$PUERTO --port 2100$PUERTO --targetgaslimit 1000"
+ETH_STATS="--ethstats $IDENTITY:bb98a0b6442386d0cdf8a31b267892c1@$ETH_STATS_IP:3000"
 CONSTELLATION_PORT="900$PUERTO"
 
 if [ "$NODE_NAME" == "main"  -o "$NODE_NAME" == "validator1" -o "$NODE_NAME" == "validator2" ]; then
-	nohup geth --datadir "${PWD}"/network/"$NODE_NAME" $GLOBAL_ARGS --etherbase 0x74d4c56d8dcbc10a567341bfac6da0a8f04dc41d --mine --minerthreads 1 --syncmode "full" 2>> "${PWD}"/logs/quorum_"$NODE_NAME"_"${_TIME}".log &
+	nohup geth --datadir "${PWD}"/network/"$NODE_NAME" $GLOBAL_ARGS $ETH_STATS --etherbase 0x74d4c56d8dcbc10a567341bfac6da0a8f04dc41d --mine --minerthreads 1 --syncmode "full" 2>> "${PWD}"/logs/quorum_"$NODE_NAME"_"${_TIME}".log &
 else
 	# TODO: Add every regular node for the constellation communication
 	generate_conf "${NODE_IP}" "${CONSTELLATION_PORT}" "$OTHER_NODES" "${PWD}"/network "${NODE_NAME}" > "${PWD}"/network/"$NODE_NAME"/constellation/constellation.conf
