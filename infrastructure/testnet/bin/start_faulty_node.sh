@@ -105,11 +105,11 @@ elif [[ "$NODE_NAME" == "validator2" ]]; then
 else
 	PUERTO=7
 fi
-# echo "${NODE_NAME} (start_node.sh) geth --datadir "${PWD}"/identities/"$NODE_NAME" init "${PWD}"/data/alastria-node/data/genesis.json"
-# geth --datadir "${PWD}"/identities/"$NODE_NAME" init "${PWD}"/data/alastria-node/data/genesis.json
 
 OTHER_NODES="`cat ${PWD}/identities/CONSTELLATION_NODES`"
-GLOBAL_ARGS="--networkid $NETID --identity $IDENTITY --rpc --rpcaddr 0.0.0.0 --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul --rpcport 2200$PUERTO --port 2100$PUERTO --targetgaslimit 1000 --ethstats $IDENTITY:bb98a0b6442386d0cdf8a31b267892c1@$ETH_STATS_IP:3000 "
+GLOBAL_ARGS="--networkid $NETID --identity $IDENTITY --rpc --rpcaddr 0.0.0.0 --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul --rpcport 2200$PUERTO --port 2100$PUERTO --targetgaslimit 18446744073709551615"
+ETH_STATS="--ethstats $IDENTITY:bb98a0b6442386d0cdf8a31b267892c1@$ETH_STATS_IP:3000"
+ETH_BASE="--etherbase 0x74d4c56d8dcbc10a567341bfac6da0a8f04dc41d"
 
 FAULTY_ARGS="--istanbul.faultymode $2 "
 CONSTELLATION_PORT="900$PUERTO"
